@@ -85,10 +85,10 @@ def process_data(uploaded_file):
 
     # Kolom Respons
     df_cleaned['Response'] = (
-        df_cleaned['Cabang'] + '>> ' +
-        df_cleaned['Program'] + '>> ' +
-        df_cleaned['Grade'] + '>> ' +
-        df_cleaned['Keterangan'] + '>> ' +
+        df_cleaned['Cabang'] + ', ' +
+        df_cleaned['Program'] + ', ' +
+        df_cleaned['Grade'] + ', ' +
+        df_cleaned['Keterangan'] + ', ' +
         df_cleaned['Online/Offline']
     )
 
