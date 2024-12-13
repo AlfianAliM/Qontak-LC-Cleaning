@@ -3,15 +3,15 @@ import pandas as pd
 import re
 from io import BytesIO
 
-# proses data
+# Proses data
 def process_data(uploaded_file):
     # Read file
     df = pd.read_excel(uploaded_file)
 
-    # drop_na 'handler' (nomor)
+    # Drop duplicates based on 'handler'
     df_cleaned = df.drop_duplicates(subset='handler', keep='last')
 
-    # ekstrak status
+    # Ekstrak status lead
     def extract_status_lead(tag):
         tag_lower = str(tag).lower()
         if 'cold' in tag_lower:
@@ -39,7 +39,7 @@ def process_data(uploaded_file):
                 return cabang
         return "tidak ada cabang"
 
-    # keyword keterangan
+    # Keyword keterangan
     keterangan_list = [
         'no respon (sudah ada conversation)', 'payment', 'Tanya Harga', 'terkendala biaya', 
         'diskusi dulu', 'DP', 'Mengisi Form Pendaftaran', 'Pelunasan', 'Pembayaran DP'
@@ -70,34 +70,37 @@ def process_data(uploaded_file):
     def extract_online_offline(tag):
         tag_lower = str(tag).lower()
         if 'online' in tag_lower:
-            return 'Online'
+            return 'online'
         elif 'offline' in tag_lower:
-            return 'Offline'
+            return 'offline'
         return "tidak ada data offline/online"
 
-    # kolom baru
-    df_cleaned['Status Lead'] = df_cleaned['tag'].apply(extract_status_lead)
-    df_cleaned['Grade'] = df_cleaned['tag'].apply(extract_grade)
-    df_cleaned['Cabang'] = df_cleaned['tag'].apply(extract_cabang)
-    df_cleaned['Keterangan'] = df_cleaned['tag'].apply(extract_keterangan)
-    df_cleaned['Program'] = df_cleaned['tag'].apply(extract_program)
-    df_cleaned['Online/Offline'] = df_cleaned['tag'].apply(extract_online_offline)
+    # Kolom baru
+    df_cleaned['status lead'] = df_cleaned['tag'].apply(extract_status_lead)
+    df_cleaned['grade'] = df_cleaned['tag'].apply(extract_grade)
+    df_cleaned['cabang'] = df_cleaned['tag'].apply(extract_cabang)
+    df_cleaned['keterangan'] = df_cleaned['tag'].apply(extract_keterangan)
+    df_cleaned['program'] = df_cleaned['tag'].apply(extract_program)
+    df_cleaned['online/offline'] = df_cleaned['tag'].apply(extract_online_offline)
 
     # Kolom Respons
-    df_cleaned['Response'] = (
-        df_cleaned['Cabang'] + ', ' +
-        df_cleaned['Program'] + ', ' +
-        df_cleaned['Grade'] + ', ' +
-        df_cleaned['Keterangan'] + ', ' +
-        df_cleaned['Online/Offline']
+    df_cleaned['response'] = (
+        df_cleaned['cabang'] + ', ' +
+        df_cleaned['program'] + ', ' +
+        df_cleaned['grade'] + ', ' +
+        df_cleaned['keterangan'] + ', ' +
+        df_cleaned['online/offline']
     )
 
     # Kolom final
     df_final = df_cleaned[[
-        'Status Lead', 'Grade', 'Keterangan', 'name', 'handler', 
-        'assigned_at', 'first_response_at', 'Response', 'Cabang', 
-        'Program', 'Online/Offline', 'note', 'tag'
+        'status lead', 'grade', 'keterangan', 'name', 'handler', 
+        'assigned_at', 'first_response_at', 'response', 'cabang', 
+        'program', 'online/offline', 'note', 'tag'
     ]]
+
+    # Convert all columns to lowercase
+    df_final.columns = df_final.columns.str.lower()
 
     return df_final
 
