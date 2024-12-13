@@ -3,15 +3,15 @@ import pandas as pd
 import re
 from io import BytesIO
 
-# Proses data
+# proses data
 def process_data(uploaded_file):
     # Read file
     df = pd.read_excel(uploaded_file)
 
-    # Drop duplicates based on 'handler'
+    # drop_na 'handler' (nomor)
     df_cleaned = df.drop_duplicates(subset='handler', keep='last')
 
-    # Ekstrak status lead
+    # ekstrak status
     def extract_status_lead(tag):
         tag_lower = str(tag).lower()
         if 'cold' in tag_lower:
@@ -39,7 +39,7 @@ def process_data(uploaded_file):
                 return cabang
         return "tidak ada cabang"
 
-    # Keyword keterangan
+    # keyword keterangan
     keterangan_list = [
         'no respon (sudah ada conversation)', 'payment', 'Tanya Harga', 'terkendala biaya', 
         'diskusi dulu', 'DP', 'Mengisi Form Pendaftaran', 'Pelunasan', 'Pembayaran DP'
@@ -75,30 +75,29 @@ def process_data(uploaded_file):
             return 'offline'
         return "tidak ada data offline/online"
 
-    # Kolom baru
-    df_cleaned['status lead'] = df_cleaned['tag'].apply(extract_status_lead)
-    df_cleaned['grade'] = df_cleaned['tag'].apply(extract_grade)
-    df_cleaned['cabang'] = df_cleaned['tag'].apply(extract_cabang)
-    df_cleaned['keterangan'] = df_cleaned['tag'].apply(extract_keterangan)
-    df_cleaned['program'] = df_cleaned['tag'].apply(extract_program)
-    df_cleaned['online/offline'] = df_cleaned['tag'].apply(extract_online_offline)
+    # kolom baru
+    df_cleaned['Status Lead'] = df_cleaned['tag'].apply(extract_status_lead)
+    df_cleaned['Grade'] = df_cleaned['tag'].apply(extract_grade)
+    df_cleaned['Cabang'] = df_cleaned['tag'].apply(extract_cabang)
+    df_cleaned['Keterangan'] = df_cleaned['tag'].apply(extract_keterangan)
+    df_cleaned['Program'] = df_cleaned['tag'].apply(extract_program)
+    df_cleaned['Online/Offline'] = df_cleaned['tag'].apply(extract_online_offline)
 
     # Kolom Respons
-    df_cleaned['response'] = (
-        df_cleaned['cabang'] + ', ' +
-        df_cleaned['program'] + ', ' +
-        df_cleaned['grade'] + ', ' +
-        df_cleaned['keterangan'] + ', ' +
-        df_cleaned['online/offline']
+    df_cleaned['Response'] = (
+        df_cleaned['Cabang'] + ', ' +
+        df_cleaned['Program'] + ', ' +
+        df_cleaned['Grade'] + ', ' +
+        df_cleaned['Keterangan'] + ', ' +
+        df_cleaned['Online/Offline']
     )
 
-    # Kolom final (6 kolom yang diminta)
+    # Kolom final
     df_final = df_cleaned[[
-        'cabang', 'program', 'grade', 'response', 'online/offline', 'note'
+        'Status Lead', 'Grade', 'Keterangan', 'name', 'handler', 
+        'assigned_at', 'first_response_at', 'Response', 'Cabang', 
+        'Program', 'Online/Offline', 'note', 'tag'
     ]]
-
-    # Convert all columns to lowercase
-    df_final.columns = df_final.columns.str.lower()
 
     return df_final
 
