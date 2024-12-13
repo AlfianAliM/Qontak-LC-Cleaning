@@ -15,18 +15,18 @@ def process_data(uploaded_file):
     def extract_status_lead(tag):
         tag_lower = str(tag).lower()
         if 'cold' in tag_lower:
-            return 'Cold'
+            return 'cold'
         elif 'warm' in tag_lower:
-            return 'Warm'
+            return 'warm'
         elif 'hot' in tag_lower:
-            return 'Hot'
+            return 'hot'
         return None
 
     # Ekstrak grade
     def extract_grade(tag):
         match = re.search(r'\bgrade\s*[a-z0-9]+\b', str(tag), re.IGNORECASE)
         if match:
-            return match.group(0).capitalize()
+            return match.group(0)
         return "tidak ada grade"
 
     # Daftar cabang LC
