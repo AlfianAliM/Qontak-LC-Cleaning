@@ -92,11 +92,9 @@ def process_data(uploaded_file):
         df_cleaned['online/offline']
     )
 
-    # Kolom final
+    # Kolom final (6 kolom yang diminta)
     df_final = df_cleaned[[
-        'status lead', 'grade', 'keterangan', 'name', 'handler', 
-        'assigned_at', 'first_response_at', 'response', 'cabang', 
-        'program', 'online/offline', 'note', 'tag'
+        'cabang', 'program', 'grade', 'response', 'online/offline', 'note'
     ]]
 
     # Convert all columns to lowercase
