@@ -108,6 +108,13 @@ def process_data(uploaded_file):
         'name', 'handler', 'Cabang', 'Program', 'Grade', 'Response', 'Online/Offline', 'note'
     ]]
 
+    # Rename columns
+    df_final.rename(columns={
+        'name': 'Nama',
+        'handler': 'Nomor',
+        'note': 'Catatan'
+    }, inplace=True)
+
     return df_final
 
 # Dataframe to excel
