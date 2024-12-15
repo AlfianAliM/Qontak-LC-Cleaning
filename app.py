@@ -11,6 +11,10 @@ def process_data(uploaded_file):
     # drop_na 'handler' (nomor)
     df_cleaned = df.drop_duplicates(subset='handler', keep='last')
 
+    # name lower
+    if 'name' in df_cleaned.columns:
+        df_cleaned['name'] = df_cleaned['name'].str.lower()
+
     # ekstrak status
     def extract_status_lead(tag):
         tag_lower = str(tag).lower()
