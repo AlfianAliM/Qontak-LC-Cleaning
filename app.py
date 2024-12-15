@@ -96,14 +96,15 @@ def process_data(uploaded_file):
         df_cleaned['Online/Offline']
     )
 
-    # response lower
+    # lower value
     df_cleaned['Response'] = df_cleaned['Response'].str.lower()
+    df_cleaned['Cabang'] = df_cleaned['Cabang'].str.lower()
+    df_cleaned['Program'] = df_cleaned['Program'].str.lower()
 
     # Kolom final
+    # Nama, Nomor, Cabang, Program, Grade,  Response, Offline/Online,Catatan
     df_final = df_cleaned[[
-        'Status Lead', 'Grade', 'Keterangan', 'name', 'handler', 
-        'assigned_at', 'first_response_at', 'Response', 'Cabang', 
-        'Program', 'Online/Offline', 'note', 'tag'
+        'name', 'handler', 'Cabang', 'Program', 'Grade', 'Response', 'Online/Offline', 'note'
     ]]
 
     return df_final
