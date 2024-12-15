@@ -96,6 +96,9 @@ def process_data(uploaded_file):
         df_cleaned['Online/Offline']
     )
 
+    # response lower
+    df_cleaned['Response'] = df_cleaned['Response'].str.lower()
+
     # Kolom final
     df_final = df_cleaned[[
         'Status Lead', 'Grade', 'Keterangan', 'name', 'handler', 
