@@ -105,7 +105,7 @@ def process_data(uploaded_file):
     # Kolom final
     # Nama, Nomor, Cabang, Program, Grade,  Response, Offline/Online,Catatan
     df_final = df_cleaned[[
-        'name', 'handler', 'Cabang', 'Program', 'Grade', 'Response', 'Online/Offline', 'note'
+        'name', 'handler', 'Cabang', 'Program', 'Status Lead', 'Grade', 'Keterangan', 'Response', 'Online/Offline', 'note'
     ]]
 
     # Rename columns
