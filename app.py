@@ -45,7 +45,7 @@ def process_data(uploaded_file):
             return 'grade A3'
         elif any(keyword in tag_str for keyword in ['check in']):
             return 'grade A4'
-        return 'tidak ada grade'
+        return 'no information grade'
 
     
 
@@ -57,7 +57,7 @@ def process_data(uploaded_file):
         for cabang in cabang_list:
             if cabang.lower() in str(tag).lower():
                 return cabang
-        return "tidak ada cabang"
+        return "no information cabang"
 
     # keyword keterangan
     keterangan_list = [
@@ -97,7 +97,7 @@ def process_data(uploaded_file):
         for keterangan in keterangan_list:
             if keterangan.lower() in str(tag).lower():
                 return keterangan
-        return "tidak ada keterangan"
+        return "no information"
 
     # Daftar Program LC
     program_list = [
@@ -111,7 +111,7 @@ def process_data(uploaded_file):
         for program in program_list:
             if program in tag_lower:
                 return program.capitalize()
-        return "tidak ada program"
+        return "no information program"
 
     # Ekstrak jenis program
     def extract_online_offline(tag):
@@ -120,7 +120,7 @@ def process_data(uploaded_file):
             return 'online'
         elif 'offline' in tag_lower:
             return 'offline'
-        return "tidak ada data offline/online"
+        return "no information offline/online"
 
     # kolom baru
     df_cleaned['Status Lead'] = df_cleaned['tag'].apply(extract_status_lead)
