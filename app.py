@@ -27,15 +27,17 @@ def process_data(uploaded_file):
 
     # Ekstrak grade
     def extract_grade(tag):
-        match = re.search(r'\bgrade\s*[a-z0-9]+\b', str(tag), re.IGNORECASE)
+        tag_str = str(tag).lower()
+        match = re.search(r'\bgrade\s*[a-z0-9]+\b', tag_str, re.IGNORECASE)
         if match:
             return match.group(0)
-        tag_lower = str(tag).lower()
-        if 'iseng' in tag_lower or 'no respon' in tag_lower:
+        elif any(keyword in tag_str for keyword in ['iseng', 'no respon', 'tidak valid']):
             return 'grade E'
-        if 'tanya program' in tag_lower or 'tanya harga' in tag_lower:
-            return 'grade c'
-        return "tidak ada grade"
+        elif any(keyword in tag_str for keyword in ['tanya program', 'tanya harga']):
+            return 'grade C'
+        return 'tidak ada grade'
+
+    
 
     # Daftar cabang LC
     cabang_list = ['Pare', 'Bogor', 'Bandung', 'Jogja', 'Serang', 'Lampung', 'Medan', 'Makassar']
