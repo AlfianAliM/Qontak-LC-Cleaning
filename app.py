@@ -31,6 +31,11 @@ def process_data(uploaded_file):
         match = re.search(r'\bgrade\s*[a-z0-9]+\b', str(tag), re.IGNORECASE)
         if match:
             return match.group(0)
+        tag_lower = str(tag).lower()
+        if 'iseng' in tag_lower or 'no respon' in tag_lower:
+            return 'Grade E'
+        if 'tanya program' in tag_lower or 'tanya harga' in tag_lower:
+            return 'Grade C'
         return "tidak ada grade"
 
     # Daftar cabang LC
