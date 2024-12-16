@@ -135,6 +135,7 @@ def process_data(uploaded_file):
     df_cleaned['Cabang'] = df_cleaned['Cabang'].str.lower()
     df_cleaned['Program'] = df_cleaned['Program'].str.lower()
     df_cleaned['Status Lead'] = df_cleaned['Status Lead'].str.lower()
+    df_cleaned['Grade'] = df_cleaned['Grade'].str.lower()
     df_cleaned['note'] = df_cleaned['note'].str.lower()
     df_cleaned['Keterangan'] = df_cleaned['Keterangan'].str.lower()
 
