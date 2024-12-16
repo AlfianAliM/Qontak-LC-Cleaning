@@ -24,16 +24,6 @@ def process_data(uploaded_file):
             return 'warm'
         elif 'hot' in tag_lower:
             return 'hot'
-    
-        # Tentukan status berdasarkan grade jika status tidak ada
-        grade_lower = str(grade).lower()
-        if 'grade e' in grade_lower or 'grade c' in grade_lower:
-            return 'cold'
-        elif 'grade b' in grade_lower:
-            return 'warm'
-        elif 'grade a' in grade_lower:
-            return 'hot'
-        return None
 
     # Ekstrak grade
     def extract_grade(tag):
