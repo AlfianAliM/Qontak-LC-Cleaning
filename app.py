@@ -33,17 +33,17 @@ def process_data(uploaded_file):
             return match.group(0)
         elif any(keyword in tag_str for keyword in ['iseng', 'no respon', 'tidak valid']):
             return 'grade E'
-        elif any(keyword in tag_str for keyword in ['tanya program', 'tanya harga', 'Tanya Progam', 'Tanya Harga', 'Kirim Flyer', 'Tanya Durasi Program', 'Menentukan Jadwal Program', 'kendala waktu', 'diskusi dulu', 'Belum tau kapan', 'pikir2 dulu', 'menunggu promo', 'program tdk sesuai', 'tanya di luar program', 'cancel program', 'kuota penuh', 'WNA']):
+        elif any(keyword in tag_str for keyword in ['tanya program', 'tanya harga', 'kirim flyer', 'tanya durasi program', 'menentukan jadwal program', 'kendala waktu', 'diskusi dulu', 'belum tau kapan', 'pikir2 dulu', 'menunggu promo', 'program tdk sesuai', 'tanya di luar program', 'cancel program', 'kuota penuh', 'wna']):
             return 'grade C'
-        elif any(keyword in tag_str for keyword in ['Konsultasi Program', 'Konsultasi Harga', 'Konsultasi Camp', 'Menentukan Jadwal Program', 'Menunggu Jadwal Liburan', 'desember']):
+        elif any(keyword in tag_str for keyword in ['konsultasi program', 'konsultasi harga', 'konsultasi camp', 'menentukan jadwal program', 'menunggu jadwal liburan', 'desember']):
             return 'grade B'
-        elif any(keyword in tag_str for keyword in ['Mengisi Form Pendaftaran']):
+        elif any(keyword in tag_str for keyword in ['mengisi form pendaftaran']):
             return 'grade A1'
-        elif any(keyword in tag_str for keyword in ['Pembayaran DP']):
+        elif any(keyword in tag_str for keyword in ['pembayaran dp']):
             return 'grade A2'
-        elif any(keyword in tag_str for keyword in ['Pelunasan']):
+        elif any(keyword in tag_str for keyword in ['pelunasan']):
             return 'grade A3'
-        elif any(keyword in tag_str for keyword in ['Check in']):
+        elif any(keyword in tag_str for keyword in ['check in']):
             return 'grade A4'
         return 'tidak ada grade'
 
