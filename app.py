@@ -46,7 +46,34 @@ def process_data(uploaded_file):
     # keyword keterangan
     keterangan_list = [
         'no respon (sudah ada conversation)', 'payment', 'Tanya Harga', 'terkendala biaya', 
-        'diskusi dulu', 'DP', 'Mengisi Form Pendaftaran', 'Pelunasan', 'Pembayaran DP'
+        'diskusi dulu', 'Pembayaran DP', 'DP', 'Mengisi Form Pendaftaran', 'Pelunasan', 'Pembayaran DP', 'Tidak valid', 'No respon','Iseng',
+        'Tanya Progam',
+        'Tanya Harga',
+        'Kirim Flyer',
+        'Tanya Durasi Program',
+        'Menentukan Jadwal Program',
+        'kendala waktu',
+        'diskusi dulu',
+        'Belum tau kapan',
+        'pikir2 dulu',
+        'menunggu promo',
+        'program tdk sesuai',
+        'tanya di luar program',
+        'cancel program',
+        'kuota penuh',
+        'WNA',
+        'Konsultasi Program',
+        'Konsultasi Harga',
+        'Konsultasi Camp',
+        'Menentukan Jadwal Program',
+        'Menunggu Jadwal Liburan',
+        'desember',
+        'Mengisi Form Pendaftaran',
+        'Pelunasan',
+        'Check in'
+
+
+
     ]
 
     # Ekstrak keterangan
