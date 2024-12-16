@@ -153,14 +153,16 @@ def process_data(uploaded_file):
     # Kolom final
     # Nama, Nomor, Cabang, Program, Grade,  Response, Offline/Online,Catatan
     df_final = df_cleaned[[
-        'name', 'handler', 'Cabang', 'Program', 'Status Lead', 'Grade', 'Keterangan', 'Response', 'Online/Offline', 'note'
+        'assigned_at', 'first_response_at', 'name', 'handler', 'Cabang', 'Program', 'Status Lead', 'Grade', 'Keterangan', 'Response', 'Online/Offline', 'note'
     ]]
 
     # Rename columns
     df_final.rename(columns={
         'name': 'Nama',
         'handler': 'Nomor',
-        'note': 'Catatan'
+        'note': 'Catatan',
+        'assigned_at' : 'Tanggal Lead',
+        'first_response_at' : 'Tanggal Respon'
     }, inplace=True)
 
     return df_final
