@@ -87,6 +87,10 @@ def process_data(uploaded_file):
     df_cleaned['Program'] = df_cleaned['tag'].apply(extract_program)
     df_cleaned['Online/Offline'] = df_cleaned['tag'].apply(extract_online_offline)
 
+    # grade dari keterangan
+    df_cleaned.loc[df_cleaned['Keterangan'].str.lower().isin(['tidak valid', 'no respon', 'iseng']), 'Grade'] = 'Grade E'
+    
+
     # Kolom Respons
     df_cleaned['Response'] = (
         df_cleaned['Cabang'] + ', ' +
