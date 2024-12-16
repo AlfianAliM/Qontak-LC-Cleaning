@@ -132,6 +132,7 @@ def process_data(uploaded_file):
     df_cleaned['Cabang'] = df_cleaned['Cabang'].str.lower()
     df_cleaned['Program'] = df_cleaned['Program'].str.lower()
     df_cleaned['note'] = df_cleaned['note'].str.lower()
+    df_cleaned['keterangan'] = df_cleaned['keterangan'].str.lower()
 
     # Kolom final
     # Nama, Nomor, Cabang, Program, Grade,  Response, Offline/Online,Catatan
