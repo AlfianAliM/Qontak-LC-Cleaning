@@ -33,9 +33,9 @@ def process_data(uploaded_file):
             return match.group(0)
         tag_lower = str(tag).lower()
         if 'iseng' in tag_lower or 'no respon' in tag_lower:
-            return 'Grade E'
+            return 'grade E'
         if 'tanya program' in tag_lower or 'tanya harga' in tag_lower:
-            return 'Grade C'
+            return 'grade c'
         return "tidak ada grade"
 
     # Daftar cabang LC
@@ -134,6 +134,7 @@ def process_data(uploaded_file):
     df_cleaned['Response'] = df_cleaned['Response'].str.lower()
     df_cleaned['Cabang'] = df_cleaned['Cabang'].str.lower()
     df_cleaned['Program'] = df_cleaned['Program'].str.lower()
+    df_cleaned['Status Lead'] = df_cleaned['Status Lead'].str.lower()
     df_cleaned['note'] = df_cleaned['note'].str.lower()
     df_cleaned['Keterangan'] = df_cleaned['Keterangan'].str.lower()
 
