@@ -176,7 +176,7 @@ def convert_df_to_excel(df):
     return processed_data
 
 # Streamlit
-st.title("Cleaning Data Qontak")
+st.title("Cleaning Data Qontak LC")
 
 # Upload
 uploaded_file = st.file_uploader("Upload file xlsx", type=["xlsx"])
